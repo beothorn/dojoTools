@@ -9,7 +9,7 @@ import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
 import org.junit.runner.notification.RunListener;
 
-public class GitCommitRunnerTest {
+public class GitCommitListenerTest {
 
 	GitRepositoryMock git = new GitRepositoryMock();
 	RunListener listener = new GitCommitRunListener(git);	
