@@ -4,7 +4,6 @@
 	<groupId>libresubs.dojo</groupId>
 	<artifactId>dojoJunit</artifactId>
 	<version>1.0-SNAPSHOT</version>
-<!----!>	
 	<repositories>
 		<repository>
 			<id>jgit-repository</id>
