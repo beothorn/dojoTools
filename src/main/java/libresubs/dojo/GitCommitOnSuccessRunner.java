@@ -16,7 +16,7 @@ public class GitCommitOnSuccessRunner extends BlockJUnit4ClassRunner{
 	@Override
 	public void run(RunNotifier notifier) {
 		super.run(notifier);
-		TestClassGitRepository repository = new TestClassGitRepository(klass);
+		GitRepositoryForClass repository = new GitRepositoryForClass(klass);
 		GitCommitRunListener listener = new GitCommitRunListener(repository);
 		notifier.addListener(listener);
 	}

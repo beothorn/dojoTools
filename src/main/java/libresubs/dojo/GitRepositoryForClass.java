@@ -3,11 +3,11 @@ package libresubs.dojo;
 import java.io.File;
 import java.util.Arrays;
 
-public class TestClassGitRepository implements GitRepository {
+public class GitRepositoryForClass implements GitRepository {
 
 	private final Class<?> testClass;
 
-	public TestClassGitRepository(Class<?> testClass){
+	public GitRepositoryForClass(Class<?> testClass){
 		this.testClass = testClass;
 	}
 	
