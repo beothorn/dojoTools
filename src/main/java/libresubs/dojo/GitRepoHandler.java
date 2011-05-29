@@ -11,9 +11,6 @@ import org.eclipse.jgit.lib.RepositoryBuilder;
 
 public class GitRepoHandler {
 	
-	public static final String DEFAULT_COMMIT_MESSAGE = "Anonymous commit";
-	public static final String DEFAULT_EMAIL = "noemail@non.no";
-	public static final String DEFAULT_NAME = "Anon";
 	private final Git git;
 	private Repository repo;
 	
