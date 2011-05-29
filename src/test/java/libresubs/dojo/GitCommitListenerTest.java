@@ -11,7 +11,7 @@ import org.junit.runner.notification.Failure;
 import org.junit.runner.notification.RunListener;
 
 @RunWith(GitCommitOnSuccessRunner.class)
-public class GitCommitListenerTest {
+public class GitCommitListenerTest {//
 
 	GitRepositoryMock git = new GitRepositoryMock();
 	RunListener listener = new GitCommitRunListener(git);	

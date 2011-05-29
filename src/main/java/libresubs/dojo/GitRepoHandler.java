@@ -41,6 +41,9 @@ public class GitRepoHandler {
 	private boolean hasModification() {
 		Status s = getStatusOrCry();
 		
+		if (s.getModified().size() >0)
+			return true;
+		
 		if (s.getChanged().size() > 0)
 			return true;
 		
