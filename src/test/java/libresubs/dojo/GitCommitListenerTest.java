@@ -6,9 +6,11 @@ import libresubs.dojo.mock.GitRepositoryMock;
 import org.junit.Test;
 import org.junit.runner.Description;
 import org.junit.runner.Result;
+import org.junit.runner.RunWith;
 import org.junit.runner.notification.Failure;
 import org.junit.runner.notification.RunListener;
 
+@RunWith(GitCommitOnSuccessRunner.class)
 public class GitCommitListenerTest {
 
 	GitRepositoryMock git = new GitRepositoryMock();

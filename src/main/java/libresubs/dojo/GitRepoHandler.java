@@ -6,6 +6,7 @@ import java.io.IOException;
 import org.eclipse.jgit.api.AddCommand;
 import org.eclipse.jgit.api.CommitCommand;
 import org.eclipse.jgit.api.Git;
+import org.eclipse.jgit.dircache.DirCache;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.lib.RepositoryBuilder;
 
@@ -48,10 +49,11 @@ public class GitRepoHandler {
 	}
 
 	private void addFile(final String filePattern) {
+		repo.getRepositoryState().values();
 		final AddCommand addCommand = git.add();
 		addCommand.addFilepattern(filePattern);
 		try {
-			addCommand.call();
+			DirCache result = addCommand.call();
 		} catch (final Exception e) {
 			throw new RuntimeException("Error while adding all repository to initial commit.", e);
 		}
