@@ -11,7 +11,7 @@ import org.eclipse.jgit.errors.NoWorkTreeException;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.lib.RepositoryBuilder;
 
-public class GitRepoHandler {
+class GitRepoHandler {
 	
 	private final Git git;
 	private Repository repo;

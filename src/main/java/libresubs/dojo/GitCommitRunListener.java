@@ -3,7 +3,7 @@ package libresubs.dojo;
 import org.junit.runner.Result;
 import org.junit.runner.notification.RunListener;
 
-public class GitCommitRunListener extends RunListener {
+class GitCommitRunListener extends RunListener {
 
 	private final GitRepository git;
 
