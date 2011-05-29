@@ -3,7 +3,7 @@ package libresubs.dojo;
 import java.io.File;
 import java.util.Arrays;
 
-public class GitRepositoryForClass implements GitRepository {
+class GitRepositoryForClass implements GitRepository {
 
 	private final Class<?> testClass;
 
