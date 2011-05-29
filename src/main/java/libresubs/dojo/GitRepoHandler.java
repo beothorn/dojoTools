@@ -30,9 +30,24 @@ public class GitRepoHandler {
 		
 	}
 	
+	public void commitAllWithUserMessage(String user, String message){
+		addAll();
+		commitWith(user, user, message);
+	}
+
 	private void addAll() {
 		final String allFilesPattern = ".";
 		addFile(allFilesPattern);
+	}
+
+	private void commitWith(final String commiterName, final String commiterEmail,
+			final String commitMessage) {
+		try{
+			final CommitCommand commitCommand = git.commit();
+			commitCommand.setAll(true).setCommitter(commiterName, commiterEmail).setMessage(commitMessage).call();
+		} catch (final Exception e) {
+			throw new RuntimeException("Error commiting file", e);
+		}
 	}
 
 	private void addFile(final String filePattern) {
@@ -43,20 +58,5 @@ public class GitRepoHandler {
 		} catch (final Exception e) {
 			throw new RuntimeException("Error while adding all repository to initial commit.", e);
 		}
-	}
-
-	public void commitWith(final String commiterName, final String commiterEmail,
-			final String commitMessage) {
-		try{
-			final CommitCommand commitCommand = git.commit();
-			commitCommand.setAll(true).setCommitter(commiterName, commiterEmail).setMessage(commitMessage).call();
-		} catch (final Exception e) {
-			throw new RuntimeException("Error commiting file", e);
-		}
-	}
-	
-	public void commitAllWithUserMessage(String user, String message){
-		addAll();
-		commitWith(user, user, message);
 	}
 }
