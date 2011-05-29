@@ -6,7 +6,8 @@ import java.io.IOException;
 import org.eclipse.jgit.api.AddCommand;
 import org.eclipse.jgit.api.CommitCommand;
 import org.eclipse.jgit.api.Git;
-import org.eclipse.jgit.dircache.DirCache;
+import org.eclipse.jgit.api.Status;
+import org.eclipse.jgit.errors.NoWorkTreeException;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.lib.RepositoryBuilder;
 
@@ -29,8 +30,39 @@ public class GitRepoHandler {
 	}
 	
 	public void commitAllWithUserMessage(String user, String message){
-		addAll();
-		commitWith(user, user, message);
+		
+		if (hasModification()){
+			addAll();
+			commitWith(user, user, message);			
+		}
+		
+	}
+
+	private boolean hasModification() {
+		Status s = getStatusOrCry();
+		
+		if (s.getChanged().size() > 0)
+			return true;
+		
+		if (s.getUntracked().size() > 0)
+			return true;
+		
+		if (s.getMissing().size() > 0)
+			return true;
+		
+		return false;
+	}
+
+	private Status getStatusOrCry() {
+		Status status;
+		try {
+			status = git.status().call();
+		} catch (NoWorkTreeException e) {
+			throw new RuntimeException(e);
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+		return status;
 	}
 
 	private void addAll() {
@@ -49,11 +81,10 @@ public class GitRepoHandler {
 	}
 
 	private void addFile(final String filePattern) {
-		repo.getRepositoryState().values();
 		final AddCommand addCommand = git.add();
 		addCommand.addFilepattern(filePattern);
 		try {
-			DirCache result = addCommand.call();
+			addCommand.call();
 		} catch (final Exception e) {
 			throw new RuntimeException("Error while adding all repository to initial commit.", e);
 		}
