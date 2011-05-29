@@ -8,9 +8,9 @@ public class GitCommitOnSuccessRunner extends BlockJUnit4ClassRunner{
 
 	private final Class<?> klass;
 
-	public GitCommitOnSuccessRunner(Class<?> klass) throws InitializationError {
-		super(klass);
-		this.klass = klass;
+	public GitCommitOnSuccessRunner(Class<?> testClass) throws InitializationError {
+		super(testClass);
+		this.klass = testClass;
 	}
 	
 	@Override
