@@ -41,17 +41,24 @@ public class GitRepoHandler {
 	private boolean hasModification() {
 		Status s = getStatusOrCry();
 		
-		if (s.getModified().size() >0)
+		if (s.getAdded().size() > 0)
 			return true;
 		
 		if (s.getChanged().size() > 0)
+			return true;
+
+		if (s.getMissing().size() > 0)
+			return true;
+
+		if (s.getModified().size() >0)
+			return true;
+		
+		if (s.getRemoved().size() > 0)
 			return true;
 		
 		if (s.getUntracked().size() > 0)
 			return true;
 		
-		if (s.getMissing().size() > 0)
-			return true;
 		
 		return false;
 	}
